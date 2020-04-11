@@ -15,8 +15,8 @@ setInterval(function(){
 
 	if(!attack_mode || character.rip || is_moving(character)) return;
 
-	// stay_in_bounds();
-	if(is_out_of_bounds() && attack_mode == true) {
+	// stay_in_bounds(); // Not working as the return must be directly in the setInterval() ??
+	if(is_out_of_bounds()) {
         log("hit");
 		attack_mode = false;
 		move(reset.x, reset.y).then(function(){

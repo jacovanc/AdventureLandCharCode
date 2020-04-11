@@ -43,8 +43,8 @@ function get_best_attack() {
     return "attack"; // TODO: Make this function return the best attack that can be used
 }
 
-var char_range = character.range * 1; //character.range;
-
+var step_size = 20; 
+var char_range = character.range * 1 - step_size; //character.range;
 function kite(target) { // TODO: Move this logic out of main loop (4 times a second) to a faster tick loop? May cause problems.
     var _dx = character.x - target.x;
     var _dy = character.y - target.y;
@@ -52,7 +52,6 @@ function kite(target) { // TODO: Move this logic out of main loop (4 times a sec
     var dy = abs(_dy); // The y difference
     var x = character.x;
     var y = character.y;
-    var step_size = 11; // 11 seems to work best for "out of combat" walking to enemy without having a stutter walk. But perhaps this should not use the kite algorithm anyway
 
     if(dx < dy) { // Determine y and x movement absolute values (normalised to 1 for the larger value), multiplied by the defined 'step_size' value
         var ymove = (dy / dy) * step_size; // (dy/dy) = 1 (but keeps pos/negative sign)
@@ -90,7 +89,7 @@ function kite(target) { // TODO: Move this logic out of main loop (4 times a sec
             y = character.y + ymove; // Move up
         }
     } else { // If only just out of range, don't move just wait
-        // log("Kiting: Don't move just wait");
+        log("Kiting: Don't move just wait");
     }
     move(
         x,
@@ -117,8 +116,9 @@ function stay_in_bounds() {
 		move(reset.x, reset.y).then(function(){
             log("hit2");
 		    // change_target(target);
-            attack_mode=true;
+			attack_mode=true;
         });
+		return;
 	}
 }
 function is_out_of_bounds() {
