@@ -24,9 +24,9 @@ setInterval(function(){
 		use_best_attack(target);
     } else {
         // Kite the target
-        console.log("char: ", character.x + ", " + character.y);
-        console.log("targ: ", target.x + ", " + target.y);
-        console.log("____");
+        // console.log("char: ", character.x + ", " + character.y);
+        // console.log("targ: ", target.x + ", " + target.y);
+        // console.log("____");
         kite(target);
     }
 
